@@ -1,3 +1,6 @@
+// Longest Common Substring
+// Recurrence formula: matrix(i, j) = matrix(i - 1, j - 1) + 1 or 0
+
 #include <iostream>
 #include <string>
 
