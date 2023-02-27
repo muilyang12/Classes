@@ -1,4 +1,5 @@
 // Floyd Warshall Algorithm
+// Recurrence formula: distance(i, j) = min(distance(i, j), distance(i, k) + distance(k, j))
 
 #include <iostream>
 #include <vector>
