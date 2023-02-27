@@ -19,16 +19,6 @@ void printMatrix(std::vector<std::vector<int>>& matrix) {
 std::vector<std::vector<int>> floydWarshall(std::vector<std::vector<int>>& matrix, int n) {
     std::vector<std::vector<int>> result;
 
-    for (auto row : result) {
-        std::vector<int> arr;
-
-        for (auto num : row) {
-            arr.push_back(num);
-        }
-
-        result.push_back(arr);
-    }
-
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n; j++) {
             for (let k = 0; k < n; k++) {
