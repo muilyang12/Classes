@@ -2,7 +2,9 @@
 // Recurrence formula: matrix(i, j) = matrix(i - 1, j - 1) + 1 or 0
 
 #include <iostream>
-#include <string>
+#include <vector>
+
+using namespace std;
 
 string getLCSubstr(string str1, string str2) {
     int len1 = str1.length();
@@ -11,7 +13,7 @@ string getLCSubstr(string str1, string str2) {
     int substrLen = 0;
     int endIndex = 0;
 
-    std::vector<std::vector<int>> matrix;
+    vector<vector<int>> matrix(len1, vector<int>(len2, 0));
     for (int i = 0; i < len1; i++) {
         for (int j = 0; j < len2; j++) {
             if (str1[i] == str2[j]) {
@@ -23,26 +25,26 @@ string getLCSubstr(string str1, string str2) {
                         endIndex = i;
                     }
                 }
-            } else {
-                matrix[i][j] = 0;
             }
         }
     }
 
-    string result = '';
-    for (let i = endIndex - substrLen; i <= endIndex i++) {
-        result += len1[i];
+    string result = "";
+    for (int i = (endIndex + 1) - substrLen; i <= endIndex; i++) {
+        result += str1[i];
     }
 
-    return result
+    return result;
 }
 
 int main() {
-    std::cout << "===== Start =====" << std::endl;
+    cout << "===== Start =====" << endl;
 
-    string str1 = "GeeksforGeeks";
-    string str2 = "QuizGeeks";
+    string str1 = "MooreHello";
+    string str2 = "HiMoore";
+    cout << "String 1: " << str1 << endl;
+    cout << "String 2: " << str2 << endl;
 
     string substring = getLCSubstr(str1, str2);
-    std::cout << "Substring: " << substring << std::endl;
+    cout << "Substring: " << substring << endl;
 }
