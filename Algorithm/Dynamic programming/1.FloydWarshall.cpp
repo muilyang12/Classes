@@ -9,7 +9,7 @@
 void printMatrix(std::vector<std::vector<int>>& matrix) {
     for (auto row : matrix) {
         for (auto num : row) {
-            std::cout << num << ' ';
+            std::cout << num << '\t';
         }
 
         std::cout << std::endl;
@@ -18,14 +18,15 @@ void printMatrix(std::vector<std::vector<int>>& matrix) {
 
 std::vector<std::vector<int>> floydWarshall(std::vector<std::vector<int>>& matrix, int n) {
     std::vector<std::vector<int>> result;
+    for (auto row : matrix) {
+        result.push_back(row);
+    }
 
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j < n; j++) {
-            for (let k = 0; k < n; k++) {
-                if (matrix[i][k] + matrix[k][j] < matrix[i][j]) {
-                    result[i][j] = 1;
-                } else {
-                    result[i][j] = matrix[i][j];
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (result[i][k] + result[k][j] < result[i][j]) {
+                    result[i][j] = result[i][k] + result[k][j];
                 }
             }
         }
@@ -37,11 +38,11 @@ std::vector<std::vector<int>> floydWarshall(std::vector<std::vector<int>>& matri
 int main() {
     std::cout << "===== Start =====" << std::endl;
 
-    std::vector<std::vector<int>> graph = { 
-        { 0, 4, 2, INF },
-        { INF, 0, 5, INF },
-        { INF, -1, 0, INF },
-        { 3, INF, INF, 0 }
+    std::vector<std::vector<int>> graph = {
+        { 0, 5, INF, 8 },
+        { 7, 0, 9, INF },
+        { 2, INF, 0, 4 },
+        { INF, INF, 3, 0 }
     };
 
     std::cout << "Graph: " << std::endl;
