@@ -1,5 +1,6 @@
 // Longest Common Substring
 // Recurrence formula: matrix(i, j) = matrix(i - 1, j - 1) + 1 or 0
+// Time complexity: O(nm)
 
 #include <iostream>
 #include <vector>
