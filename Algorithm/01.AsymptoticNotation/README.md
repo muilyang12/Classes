@@ -1,13 +1,13 @@
 # Asymptotic notation, 점근 성능 표기법
 
 - Big-O
-  - f(n)≤c·g(n)인 경우 f(n)=O(g(n))의 점근 성능을 갖는다고 표현한다.
-  - 우리의 알고리즘이 이것보다 더 오래걸릴 수는 없다. 즉 알고리즘에 있어서 최악의 수행시간을 표현하는 방법. (점근적 상한)
+  - If f(n)≤c·g(n), it is said that the algorithm has an asymptotic performance of f(n)=O(g(n)).
+  - It represents the worst-case time complexity of an algorithm, indicating that our algorithm cannot take longer than this. (Asymptotic upper bound)
 
 - BIG-Omega
-  - f(n)≥c·g(n)인 경우 f(n)=Ω(g(n))의 점근 성능을 갖는다고 표현한다.
-  - 알고리즘에 있어서 최선의 수행시간을 표현하는 방법. (점근적 하한)
+  - If f(n)≥c·g(n), it is said that the algorithm has an asymptotic performance of f(n)=Ω(g(n)).
+  - It represents the best-case time complexity of an algorithm (Asymptotic lower bound)
 
 - BIG-Theta
-  - c1·g(n)≤f(n)≤c2·g(n)인 경우 f(n)=Θ(g(n))의 점근 성능을 갖는다고 표현한다.
-  - 알고리즘에 있어서 최선의 수행시간과 최악의 수행시간을 모두 포함는 형태의 표현 방법. (점근적 상하한)
+  - If c1·g(n)≤f(n)≤c2·g(n), it is said the algorithm has an asymptotic performance of f(n)=Θ(g(n)).
+  - It represents the tight bound between the best-case and worst-case time complexity of an algorithm (Asymptotic tight bound)
