@@ -1,5 +1,5 @@
 // Merge Sort
-// Time complexity: O(nlogn)
+// Time complexity: O(nlogn) (At worst: O(n^2))
 
 #include <iostream>
 #include <vector>
