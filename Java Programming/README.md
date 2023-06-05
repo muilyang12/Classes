@@ -1,22 +1,25 @@
 <h2>3장. 클래스와 상속</h2>
 
+- final 필드와 메소드
+
+  - final 필드는 상수 데이터를 선언할 때 사용하며 선언 시 초기값을 지정하여야 합니다. 일반적으로 static을 사용하여 정적 필드로 사용됩니다.
+  - final 매소드는 자식 클래스로 상속은 가능하나 오버라이딩 (재정의) 를 할 수 없는 메소드 입니다.
+
+- 인터페이스의 상속 (implements) 은 다중 상속이 가능한 반면, 클래스의 상속 (extends) 은 단일 상속만 가능합니다.
+
 - this와 super
   - this는 현재 객체에 대한 참조값을 가진 변수로, 인스턴스 메소드나 생성자에서만 사용할 수 있습니다. static 정적 메소드에서는 사용할 수 없습니다.
   - super은 현재 객체에 대한 참조값을 가졌는데, 자료형은 부모 클래스 유형의 변수입니다. this와 마찬가지로 인스턴스 메소드와 생성자에서만 사용할 수 있습니다. 감춰진 필드에 접근하거나 오버라이딩 되는 메소드를 호출할 때 사용합니다.
 
 ```
-class Circle {
+class Cylinder extends Circle {
   ...
-  public Circle(int radius, String name) {
-    this.radius = radius;
-    super.name = name;
+
+  public double getVolume() {
+    return super.getArea() * height;
   }
 }
 ```
-
-- final 필드와 메소드
-  - final 필드는 상수 데이터를 선언할 때 사용하며 선언 시 초기값을 지정하여야 합니다. 일반적으로 static을 사용하여 정적 필드로 사용됩니다.
-  - final 매소드는 자식 클래스로
 
 <br />
 
