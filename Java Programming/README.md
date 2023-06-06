@@ -57,6 +57,7 @@ interface Movable{
 ```
 
 - 다형성
+
   - 다형성은 유사하지만 다양한 형상이나 다양한 기능을 가질 수 있다는 의미로, 동일한 코드를 사용하여 여러 타입의 객체를 다룰 수 있는 능력을 의미합니다.
   - 관련이 없는 두 클래스 간 타입 변환은 금지된 반면 상속 관계에 있는 클래스의 경우 타입 변환이 가능합니다. 하위 클래스에서 상위 클래스로의 형 변환은 업캐스팅 (Upcasting) 이라고 하여 자동으로 형 변환이 가능합니다.
   - 동적 바인딩이란 메서드 호출 시 실제 실행될 메서드가 실행 시점에 결정되는 것을 의미합니다. 상위 유형의 변수로 하위 객체를 가리키더라도 실행 시점에는 객체의 실제 유형에 따라 수행되는 메소드가 결정되는 특징을 말합니다.
@@ -64,6 +65,97 @@ interface Movable{
 ```
 Animal animal = (Animal) new Dog();
 animal.cry(); // "Woof Woof"
+```
+
+<br />
+
+<hr />
+
+<h2> 5장. 제네릭과 람다식</h2>
+
+- 제네릭
+
+  - 클래스나 메소드, 인터페이스를 정의할 때 타입을 매개변수로 선언하여 사용하는 것을 제네릭이라 부릅니다.
+  - 여러 유형에 걸쳐 동작하는 일반화된 클래스나 메소드를 정의하려는 목적으로 사용할 수 있습니다.
+
+  ```
+  class Data<T> {
+    private T data;
+
+    public Data(T data) {
+      this.data = data;
+    }
+
+    public void setData(T data) {
+      this.data = data;
+    }
+    public T getData() {
+      return T;
+    };
+  }
+  ```
+
+  - 아래와 같이 사용할 수 있습니다. 제네릭의 타입이 명확한 경우 <> 괄호만 사용할 수도 있습니다. 또한 Raw 타입이라고 하여 타입 매개변수에 타입을 넣지 않고 일반 타입처럼 사용할 수도 있습니다. 이 경우 자료형을 Object로 처리하게 됩니다.
+
+  ```
+  Data<String> data1 = new Data<String>("Hello !!");
+  Data<String> data2 = new Data<>("Hello !!");
+  Data data3 = new Data("Hello !!");
+  ```
+
+  - extends 키워드를 사용하여 넣을 수 있는 타입에 상한을 설정할 수도 있습니다. 아래처럼 Data 클래스를 선언한 경우 타입 매개변수에 넣을 수 있는 클래스는 Number의 서브클래스이어야 합니다.
+
+  ```
+  class Data<T extends Number> {
+    private T data;
+
+    public Data(T data) {
+      this.data = data;
+    }
+  }
+  ```
+
+  - 타입 매개변수로 객체 생성은 할 수 없고, static 변수에 사용할 수도 없으며, 제네릭 객체의 배열을 만들 수도 없습니다.
+
+  ```
+  class Data<T extends Number> {
+    public someFunction(T data) {
+      private T value = new T(); // Error
+    }
+  }
+
+  class Data<T extends Number> {
+    public static T value; // Error
+  }
+
+  Data<Integer>[] datas; // Error
+  ```
+
+- 람다식
+
+  - 인터페이스를 상속하여 구현하는 익명 클래스의 객체 생성을 수식으로 표현한 것입니다.
+  - 인터페이스가 포함한 것이 1개의 추상 메소드뿐일 때 간단히 표현할 수 있습니다.
+  - 1개의 추상 메소드만을 갖는 인터페이스를 함수적 인터페이스 (functional interface) 라고 부릅니다.
+  - java.util.function 패키지에서 표준 함수적 인터페이스 (Consumer, Function 등.) 를 제네릭 인터페이스로 제공합니다.
+
+```
+interface Addable {
+  int add(int a, int b);
+}
+
+// Anonymous class
+Addable addable1 = new Addable() {
+    public int add(int a, int b) {
+      return (a + b);
+    }
+  };
+System.out.println(addable1.add(10, 10));
+
+// Lambda Expression
+  Addable addable2 = (int a, int b) -> {
+      return (a + b);
+  };
+  System.out.println(addable2.add(10, 10));
 ```
 
 <br />
