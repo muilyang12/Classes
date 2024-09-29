@@ -1,3 +1,6 @@
 Java Programming/*/.vscode/*
 Java Programming/*/bin/*
 Java Programming/*/lib/*
+
+Machine Learning/**/*.pyc
+Machine Learning/.venv
