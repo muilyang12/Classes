@@ -45,9 +45,7 @@ for epoch in range(epochs):
     yPlotVals = -(w[0] * xPlotVals + b) / w[1]
 
     if epoch == epochs - 1:
-        ax.plot(
-            xPlotVals, yPlotVals, "b", linewidth=2, label=f"Epoch {epoch+1} (Final)"
-        )
+        ax.plot(xPlotVals, yPlotVals, "b", linewidth=2)
     elif epoch % 20 == 0:
         ax.plot(xPlotVals, yPlotVals, "k--", linewidth=1, alpha=0.5)
         plt.pause(0.5)

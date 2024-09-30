@@ -38,9 +38,7 @@ for epoch in range(epochs):
     y_boundary = -(w[0] * x_boundary + b) / w[1]
 
     if epoch == epochs - 1:
-        ax.plot(
-            x_boundary, y_boundary, "b", linewidth=2, label=f"Epoch {epoch+1} (Final)"
-        )
+        ax.plot(x_boundary, y_boundary, "b", linewidth=2)
     elif epoch % 20 == 0:
         ax.plot(x_boundary, y_boundary, "k--", linewidth=1, alpha=0.5)
         plt.pause(0.5)
