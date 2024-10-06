@@ -1,3 +1,25 @@
+CREATE TABLE IN_DEPT (
+    EID INT NOT NULL,
+    DID INT NOT NULL,
+    Percent_Time INT NOT NULL DEFAULT 0,
+    CONSTRAINT IN_DEPT_PRIM 
+    PRIMARY KEY (EID, DID),
+    CONSTRAINT FK_EMP_EID 
+    FOREIGN KEY (EID) REFERENCES EMP(EID)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT FK_DEPT_DID 
+    FOREIGN KEY (DID) REFERENCES DEPT(DID)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT POSITIVE_PERCENT_TIME CHECK (Percent_Time >= 0)
+);
+
+
+-- ==================================================
+-- ==================================================
+
+
 SELECT DEPT.DName
 FROM DEPT 
 LEFT OUTER JOIN IN_DEPT ON DEPT.DID = IN_DEPT.DID
