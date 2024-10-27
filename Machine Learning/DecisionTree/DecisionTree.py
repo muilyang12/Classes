@@ -21,7 +21,7 @@ class DecisionTree:
         return result
 
     def _predict(self, XSample, node):
-        if not node.left and not node.right:
+        if node.isLeaf():
             return node.value
 
         if XSample[node.feature] <= node.threshold:
@@ -124,3 +124,6 @@ class DecisionTree:
             self.value = value
             self.feature = feature
             self.threshold = threshold
+
+        def isLeaf(self):
+            return not self.left and not self.right
