@@ -1,9 +1,6 @@
 import numpy as np
 import heapq
 import statistics
-from data import X_train, y_train, X_test, y_test
-
-from sklearn import metrics
 
 
 class KNN:
@@ -40,12 +37,3 @@ class KNN:
 
     def getEuclideanDistance(self, x1, x2):
         return np.sqrt(np.sum((x1 - x2) ** 2))
-
-
-knn = KNN(7)
-knn.fit(X_train, y_train)
-yTrainPred = knn.predict(X_train)
-yPred = knn.predict(X_test)
-
-print("Train Accuracy:", metrics.accuracy_score(y_train, yTrainPred))
-print("Accuracy:", metrics.accuracy_score(y_test, yPred))
