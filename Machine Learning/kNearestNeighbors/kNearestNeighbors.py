@@ -42,7 +42,7 @@ class KNN:
         return np.sqrt(np.sum((x1 - x2) ** 2))
 
 
-knn = KNN(3)
+knn = KNN(7)
 knn.fit(X_train, y_train)
 yTrainPred = knn.predict(X_train)
 yPred = knn.predict(X_test)
