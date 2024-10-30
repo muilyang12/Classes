@@ -2,53 +2,43 @@ import numpy as np
 from sklearn.datasets import make_blobs
 import matplotlib.pyplot as plt
 
-x, y = make_blobs(n_samples=50, centers=2, random_state=0, cluster_std=0.60)
-y = np.where(y == 0, -1, 1)
 
-nSamples, nFeatures = x.shape
+class SVM:
+    def __init__(self, learningRate=0.01, lambdaParam=0.01, epochs=200):
+        self.w = None
+        self.b = None
 
-w = np.zeros(nFeatures)
-b = 0
+        self.learningRate = learningRate
+        self.lambdaParam = lambdaParam
+        self.epochs = epochs
 
-lambdaParam = 0.01
-learningRate = 0.01
-epochs = 200
+    def fit(self, XTrain, yTrain, callback=None):
+        nSamples, nFeatures = XTrain.shape
 
-plt.ion()
-fig, ax = plt.subplots()
+        self.w = np.zeros(nFeatures)
+        self.b = 0
 
-ax.scatter(x[:, 0], x[:, 1], c=y, s=50, cmap="autumn")
+        yTransformed = np.where(yTrain <= 0, -1, 1)
 
-ax.set_xlabel("Feature 1")
-ax.set_ylabel("Feature 2")
+        for epoch in range(self.epochs):
+            for idx, xTrainI in enumerate(XTrain):
+                condition = yTransformed[idx] * (np.dot(xTrainI, self.w) + self.b)
 
-ax.set_title("SVM")
+                if condition < 1:
+                    dw = self.lambdaParam * self.w - yTransformed[idx] * xTrainI
+                    db = -yTransformed[idx]
+                else:
+                    dw = self.lambdaParam * self.w
+                    db = 0
 
-plt.pause(3)
+                self.w -= self.learningRate * dw
+                self.b -= self.learningRate * db
 
-for epoch in range(epochs):
-    for i in range(nSamples):
-        condition = y[i] * (np.dot(x[i], w) + b)
+            if callback:
+                if epoch == self.epochs - 1:
+                    callback(currentW=self.w.copy(), currentB=self.b, isLast=True)
+                elif epoch % 20 == 0:
+                    callback(currentW=self.w.copy(), currentB=self.b, isLast=False)
 
-        if condition < 1:
-            dw = lambdaParam * w - y[i] * x[i]
-            db = -y[i]
-
-            w = w - learningRate * dw
-            b = b - learningRate * db
-        else:
-            dw = lambdaParam * w
-
-            w = w - learningRate * dw
-
-    xPlotVals = np.linspace(min(x[:, 0]) - 1, max(x[:, 0]) + 1, 100)
-    yPlotVals = -(w[0] * xPlotVals + b) / w[1]
-
-    if epoch == epochs - 1:
-        ax.plot(xPlotVals, yPlotVals, "b", linewidth=2)
-    elif epoch % 20 == 0:
-        ax.plot(xPlotVals, yPlotVals, "k--", linewidth=1, alpha=0.5)
-        plt.pause(0.5)
-
-plt.ioff()
-plt.show()
+    def predict(self, XTest):
+        return np.sign(np.dot(XTest, self.w) + self.b)
