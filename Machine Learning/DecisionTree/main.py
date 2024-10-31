@@ -20,10 +20,7 @@ yPredictWithEntropy = entropyDecisionTree.predict(XTest)
 print("ScoreWithEntropy", accuracy_score(yTest, yPredictWithEntropy))
 
 
-visualizer = TreeVisualizer()
-
-
-def convertToAnytree(self, node: DecisionTree.Node, parent: DecisionTree.Node = None):
+def convertToAnytree(node: DecisionTree.Node, parent: DecisionTree.Node = None):
     if node.isLeaf():
         currentNode = AnyNode(
             name=f"Value: {node.value}",
@@ -37,12 +34,14 @@ def convertToAnytree(self, node: DecisionTree.Node, parent: DecisionTree.Node = 
         )
 
         if node.left:
-            self.convertToAnytree(node.left, parent=currentNode)
+            convertToAnytree(node.left, parent=currentNode)
         if node.right:
-            self.convertToAnytree(node.right, parent=currentNode)
+            convertToAnytree(node.right, parent=currentNode)
 
     return currentNode
 
+
+visualizer = TreeVisualizer()
 
 rootAnyNode = convertToAnytree(entropyDecisionTree.tree)
 visualizer.drawTree(rootAnyNode)
