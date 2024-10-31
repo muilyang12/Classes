@@ -1,22 +1,19 @@
 from anytree import Node as AnyNode
 import matplotlib.pyplot as plt
 
-from DecisionTree import DecisionTree
-
 
 class TreeVisualizer:
     def __init__(self):
         self.fig, self.ax = plt.subplots()
 
-    def drawTree(self, root):
+    def drawTree(self, rootAnyNode, hightlightedNodeName=None):
         self.ax.clear()
         self.ax.set_axis_off()
 
-        rootAnyNode = self.convertToAnytree(root)
         positions = self.calculateNodePostions(rootAnyNode)
 
         for node, (x, y) in positions.items():
-            color = "lightblue"
+            color = "red" if node.name == hightlightedNodeName else "lightblue"
             self.ax.text(
                 x,
                 y,
@@ -35,28 +32,6 @@ class TreeVisualizer:
         plt.draw()
 
         plt.show()
-
-    def convertToAnytree(
-        self, node: DecisionTree.Node, parent: DecisionTree.Node = None
-    ):
-        if node.isLeaf():
-            currentNode = AnyNode(
-                name=f"Value: {node.value}",
-                parent=parent,
-            )
-
-        else:
-            currentNode = AnyNode(
-                name=f"Feature: {node.feature}",
-                parent=parent,
-            )
-
-            if node.left:
-                self.convertToAnytree(node.left, parent=currentNode)
-            if node.right:
-                self.convertToAnytree(node.right, parent=currentNode)
-
-        return currentNode
 
     def calculateNodePostions(self, node: AnyNode, x=0, y=0, widthGap=2, heightGap=1):
         positions = {node: (x, y)}

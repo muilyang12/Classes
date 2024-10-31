@@ -1,6 +1,7 @@
 from sklearn.datasets import load_wine
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from anytree import Node as AnyNode
 
 from DecisionTree import DecisionTree
 from TreeVisualizer import TreeVisualizer
@@ -18,12 +19,39 @@ entropyDecisionTree.fit(XTrain, yTrain)
 yPredictWithEntropy = entropyDecisionTree.predict(XTest)
 print("ScoreWithEntropy", accuracy_score(yTest, yPredictWithEntropy))
 
+
+visualizer = TreeVisualizer()
+
+
+def convertToAnytree(self, node: DecisionTree.Node, parent: DecisionTree.Node = None):
+    if node.isLeaf():
+        currentNode = AnyNode(
+            name=f"Value: {node.value}",
+            parent=parent,
+        )
+
+    else:
+        currentNode = AnyNode(
+            name=f"Feature: {node.feature}",
+            parent=parent,
+        )
+
+        if node.left:
+            self.convertToAnytree(node.left, parent=currentNode)
+        if node.right:
+            self.convertToAnytree(node.right, parent=currentNode)
+
+    return currentNode
+
+
+rootAnyNode = convertToAnytree(entropyDecisionTree.tree)
+visualizer.drawTree(rootAnyNode)
+
+# ==================================================
+# ==================================================
+
 giniDecisionTree = DecisionTree(criterion="gini")
 
 giniDecisionTree.fit(XTrain, yTrain)
 yPredictWithGini = giniDecisionTree.predict(XTest)
 print("ScoreWithGini", accuracy_score(yTest, yPredictWithGini))
-
-visualizer = TreeVisualizer()
-
-visualizer.drawTree(entropyDecisionTree.tree)
