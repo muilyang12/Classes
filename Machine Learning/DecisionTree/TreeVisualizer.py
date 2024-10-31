@@ -28,9 +28,9 @@ class TreeVisualizer:
 
         for node, (x, y) in positions.items():
             for child in node.children:
-                child_x, child_y = positions[child]
+                xChild, yChild = positions[child]
 
-                self.ax.plot([x, child_x], [y, child_y], "k-")
+                self.ax.plot([x, xChild], [y, yChild], "k-")
 
         plt.draw()
 
@@ -58,7 +58,7 @@ class TreeVisualizer:
 
         return currentNode
 
-    def calculateNodePostions(self, node: AnyNode, x=0, y=0, level_width=2, y_step=1):
+    def calculateNodePostions(self, node: AnyNode, x=0, y=0, widthGap=2, heightGap=1):
         positions = {node: (x, y)}
 
         children = list(node.children)
@@ -70,8 +70,8 @@ class TreeVisualizer:
             positions.update(
                 self.calculateNodePostions(
                     child,
-                    x + (i - 0.5) * self.countLeafNodes(child) * level_width,
-                    y - y_step,
+                    x + (i - 0.5) * self.countLeafNodes(child) * widthGap,
+                    y - heightGap,
                 )
             )
         return positions
