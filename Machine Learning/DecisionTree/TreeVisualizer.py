@@ -1,0 +1,83 @@
+from anytree import Node as AnyNode
+import matplotlib.pyplot as plt
+
+from DecisionTree import DecisionTree
+
+
+class TreeVisualizer:
+    def __init__(self):
+        self.fig, self.ax = plt.subplots()
+
+    def drawTree(self, root):
+        self.ax.clear()
+        self.ax.set_axis_off()
+
+        rootAnyNode = self.convertToAnytree(root)
+        positions = self.calculateNodePostions(rootAnyNode)
+
+        for node, (x, y) in positions.items():
+            color = "lightblue"
+            self.ax.text(
+                x,
+                y,
+                node.name,
+                ha="center",
+                va="center",
+                bbox=dict(facecolor=color, edgecolor="black", boxstyle="round,pad=0.3"),
+            )
+
+        for node, (x, y) in positions.items():
+            for child in node.children:
+                child_x, child_y = positions[child]
+
+                self.ax.plot([x, child_x], [y, child_y], "k-")
+
+        plt.draw()
+
+        plt.show()
+
+    def convertToAnytree(
+        self, node: DecisionTree.Node, parent: DecisionTree.Node = None
+    ):
+        if node.isLeaf():
+            currentNode = AnyNode(
+                name=f"Value: {node.value}",
+                parent=parent,
+            )
+
+        else:
+            currentNode = AnyNode(
+                name=f"Feature: {node.feature}",
+                parent=parent,
+            )
+
+            if node.left:
+                self.convertToAnytree(node.left, parent=currentNode)
+            if node.right:
+                self.convertToAnytree(node.right, parent=currentNode)
+
+        return currentNode
+
+    def calculateNodePostions(self, node: AnyNode, x=0, y=0, level_width=2, y_step=1):
+        positions = {node: (x, y)}
+
+        children = list(node.children)
+
+        if not children:
+            return positions
+
+        for i, child in enumerate(children):
+            positions.update(
+                self.calculateNodePostions(
+                    child,
+                    x + (i - 0.5) * self.countLeafNodes(child) * level_width,
+                    y - y_step,
+                )
+            )
+        return positions
+
+    def countLeafNodes(self, node: AnyNode):
+        if not node.children:
+            return 1
+
+        return sum(self.countLeafNodes(child) for child in node.children)
