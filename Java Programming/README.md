@@ -1,84 +1,84 @@
-<h2>3장. 클래스와 상속</h2>
+# Java Programming Class
 
-- final 필드와 메소드
+## Chapter 3: Classes and Inheritance
 
-  - final 필드는 상수 데이터를 선언할 때 사용하며 선언 시 초기값을 지정하여야 합니다. 일반적으로 static을 사용하여 정적 필드로 사용됩니다.
-  - final 매소드는 자식 클래스로 상속은 가능하나 오버라이딩 (재정의) 를 할 수 없는 메소드 입니다.
+- **Final Fields and Methods**
 
-- 인터페이스의 상속 (implements) 은 다중 상속이 가능한 반면, 클래스의 상속 (extends) 은 단일 상속만 가능합니다.
+  - The `final` field is used to declare constant data, requiring an initial value at declaration. It is commonly used as a static field.
+  - A `final` method can be inherited by child classes but cannot be overridden.
 
-- this와 super
-  - this는 현재 객체에 대한 참조값을 가진 변수로, 인스턴스 메소드나 생성자에서만 사용할 수 있습니다. static 정적 메소드에서는 사용할 수 없습니다.
-  - super은 현재 객체에 대한 참조값을 가졌는데, 자료형은 부모 클래스 유형의 변수입니다. this와 마찬가지로 인스턴스 메소드와 생성자에서만 사용할 수 있습니다. 감춰진 필드에 접근하거나 오버라이딩 되는 메소드를 호출할 때 사용합니다.
+- **Inheritance with Interfaces (implements) and Classes (extends)**
 
-```
-class Cylinder extends Circle {
-  ...
+  - Interfaces can support multiple inheritance, while classes support single inheritance only.
 
-  public double getVolume() {
-    return super.getArea() * height;
+- **`this` and `super` Keywords**
+
+  - `this` is a variable that holds a reference to the current object and is usable in instance methods or constructors. It cannot be used in static methods.
+  - `super` is a reference variable that holds the parent class type. Like `this`, it is usable in instance methods and constructors to access hidden fields or overridden methods.
+
+  ```java
+  class Cylinder extends Circle {
+    ...
+
+    public double getVolume() {
+      return super.getArea() * height;
+    }
   }
-}
-```
-
-<br />
-
-<hr />
-
-<h2>4장. 인터페이스와 다형성</h2>
-
-- 추상 클래스
-  - 추상 클래스란 클래스 정의에 abstract 키워드를 사용한 클래스입니다.
-  - 일반 데이터 필드나 일반 메소드도 포함할 수 있습니다.
-  - 직접 객체 생성을 할 수는 없고, 자식 클래스로 상속하여 추상 메소드를 구현한 후에 사용할 수 있습니다.
-  - 의미적으로 유사한 클래스여서 공통으로 사용할 데이터 필드나 메소드가 있는 경우에 주로 사용합니다.
-  - 추상 메소드를 포함한 클래스는 반드시 추상 클래스이거나 인터페이스 이어야 합니다.
-
-```
-abstract public class Shape{
-  abstract public double getArea();
-}
-```
-
-- 인터페이스
-  - 인터페이스의 경우 100% 추상적 클래스로 default 메소드와 static 메소드를 제외하면 모든 메소드를 abstrct 추상 메소드로 지정하여야 합니다.
-  - 데이터 필드의 경우 public static final이 붙은 수정할 수 없는 클래스 상수만을 포함할 수 있습니다.
-  - 직접 객체 생성을 할 수는 없고, 자식 클래스로 상속하여 모든 추상 메소드를 구현한 후에 사용할 수 있습니다.
-  - 의미적으로는 관련이 없지만 기능적으로 유사한 클래스를 묶을 때 주로 사용합니다.
-  - 주로 형용사를 사용하여 인터페이스의 이름을 표현합니다. (Runnable, Serializable, Comparable 등.)
-
-```
-interface Movable{
-  void moveUp();
-  void moveDown();
-  void moveLeft();
-  void moveRight()
-}
-```
-
-- 다형성
-
-  - 다형성은 유사하지만 다양한 형상이나 다양한 기능을 가질 수 있다는 의미로, 동일한 코드를 사용하여 여러 타입의 객체를 다룰 수 있는 능력을 의미합니다.
-  - 관련이 없는 두 클래스 간 타입 변환은 금지된 반면 상속 관계에 있는 클래스의 경우 타입 변환이 가능합니다. 하위 클래스에서 상위 클래스로의 형 변환은 업캐스팅 (Upcasting) 이라고 하여 자동으로 형 변환이 가능합니다.
-  - 동적 바인딩이란 메서드 호출 시 실제 실행될 메서드가 실행 시점에 결정되는 것을 의미합니다. 상위 유형의 변수로 하위 객체를 가리키더라도 실행 시점에는 객체의 실제 유형에 따라 수행되는 메소드가 결정되는 특징을 말합니다.
-
-```
-Animal animal = (Animal) new Dog();
-animal.cry(); // "Woof Woof"
-```
-
-<br />
-
-<hr />
-
-<h2> 5장. 제네릭과 람다식</h2>
-
-- 제네릭
-
-  - 클래스나 메소드, 인터페이스를 정의할 때 타입을 매개변수로 선언하여 사용하는 것을 제네릭이라 부릅니다.
-  - 여러 유형에 걸쳐 동작하는 일반화된 클래스나 메소드를 정의하려는 목적으로 사용할 수 있습니다.
-
   ```
+
+---
+
+## Chapter 4: Interfaces and Polymorphism
+
+- **Abstract Classes**
+
+  - An abstract class is defined using the `abstract` keyword and can contain fields and methods.
+  - It cannot be instantiated directly and must be subclassed, where abstract methods are implemented in child classes.
+  - Used primarily when similar classes have shared data fields or methods.
+  - A class containing abstract methods must be an abstract class or an interface.
+
+  ```java
+  abstract public class Shape{
+    abstract public double getArea();
+  }
+  ```
+
+- **Interfaces**
+
+  - Interfaces are 100% abstract, requiring all methods to be abstract (except for default and static methods).
+  - They contain only public, static, final constants.
+  - Objects cannot be instantiated from interfaces; they must be subclassed with all abstract methods implemented.
+  - Interfaces often group unrelated but functionally similar classes and are typically named with adjectives (e.g., `Runnable`, `Serializable`, `Comparable`).
+
+  ```java
+  interface Movable{
+    void moveUp();
+    void moveDown();
+    void moveLeft();
+    void moveRight()
+  }
+  ```
+
+- **Polymorphism**
+
+  - Polymorphism allows handling multiple types of objects with the same code by having different shapes or functions.
+  - Type casting is prohibited between unrelated classes, while classes in an inheritance relationship support type conversion.
+  - Dynamic binding means that the method to be executed is determined at runtime based on the actual object type, even if it is referenced by a parent type variable.
+
+  ```java
+  Animal animal = (Animal) new Dog();
+  animal.cry(); // "Woof Woof"
+  ```
+
+---
+
+## Chapter 5: Generics and Lambda Expressions
+
+- **Generics**
+
+  - Generics allow classes, methods, or interfaces to operate with specified types at runtime, facilitating reusable, generalized code structures.
+
+  ```java
   class Data<T> {
     private T data;
 
@@ -95,17 +95,17 @@ animal.cry(); // "Woof Woof"
   }
   ```
 
-  - 아래와 같이 사용할 수 있습니다. 제네릭의 타입이 명확한 경우 <> 괄호만 사용할 수도 있습니다. 또한 Raw 타입이라고 하여 타입 매개변수에 타입을 넣지 않고 일반 타입처럼 사용할 수도 있습니다. 이 경우 자료형을 Object로 처리하게 됩니다.
+  - Usage of generics can look like this. If the generic type is clear, only `<>` can be used, or it can be used without specifying a type, treating the parameter as `Object` (Raw type).
 
-  ```
-  Data<String> data1 = new Data<String>("Hello !!");
-  Data<String> data2 = new Data<>("Hello !!");
-  Data data3 = new Data("Hello !!");
-  ```
+    ```java
+    Data<String> data1 = new Data<String>("Hello !!");
+    Data<String> data2 = new Data<>("Hello !!");
+    Data data3 = new Data("Hello !!");
+    ```
 
-  - extends 키워드를 사용하여 넣을 수 있는 타입에 상한을 설정할 수도 있습니다. 아래처럼 Data 클래스를 선언한 경우 타입 매개변수에 넣을 수 있는 클래스는 Number의 서브클래스이어야 합니다.
+  - The `extends` keyword can limit the types that can be used as generic parameters. For example, here, the parameter type must be a subclass of `Number`.
 
-  ```
+  ```java
   class Data<T extends Number> {
     private T data;
 
@@ -115,9 +115,9 @@ animal.cry(); // "Woof Woof"
   }
   ```
 
-  - 타입 매개변수로 객체 생성은 할 수 없고, static 변수에 사용할 수도 없으며, 제네릭 객체의 배열을 만들 수도 없습니다.
+  - You cannot instantiate a generic type parameter, use it as a `static` variable, or create an array of generic objects.
 
-  ```
+  ```java
   class Data<T extends Number> {
     public someFunction(T data) {
       private T value = new T(); // Error
@@ -131,149 +131,158 @@ animal.cry(); // "Woof Woof"
   Data<Integer>[] datas; // Error
   ```
 
-- 람다식
+- **Lambda Expressions**
 
-  - 인터페이스를 상속하여 구현하는 익명 클래스의 객체 생성을 수식으로 표현한 것입니다.
-  - 인터페이스가 포함한 것이 1개의 추상 메소드뿐일 때 간단히 표현할 수 있습니다.
-  - 1개의 추상 메소드만을 갖는 인터페이스를 함수적 인터페이스 (functional interface) 라고 부릅니다.
-  - java.util.function 패키지에서 표준 함수적 인터페이스 (Consumer, Function 등.) 를 제네릭 인터페이스로 제공합니다.
+  - Lambda expressions represent anonymous class implementations as expressions.
+  - They simplify syntax for interfaces with only one abstract method, known as functional interfaces.
+  - The `java.util.function` package provides standard functional interfaces like `Consumer` and `Function`.
 
-```
-interface Addable {
-  int add(int a, int b);
-}
+  ```java
+  interface Addable {
+    int add(int a, int b);
+  }
 
-// Anonymous class
-Addable addable1 = new Addable() {
-    public int add(int a, int b) {
-      return (a + b);
+  // Anonymous class
+  Addable addable1 = new Addable() {
+      public int add(int a, int b) {
+        return (a + b);
+      }
+    };
+  System.out.println(addable1.add(10, 10));
+
+  // Lambda Expression
+    Addable addable2 = (int a, int b) -> {
+        return (a + b);
+    };
+    System.out.println(addable2.add(10, 10));
+  ```
+
+---
+
+## Chapter 11: Multithreaded Programming
+
+- **Process and Thread**
+
+  - A process represents a running program and serves as an isolated execution environment with its own memory space. In Java, each program is executed as a single process that can contain multiple threads.
+  - A thread is a lightweight execution unit within a process, often referred to as a lightweight process. Each process can spawn multiple threads, and these threads share the same memory space and resources within the process, allowing efficient, concurrent execution.
+  - Multithreading allows multiple threads to run simultaneously within a single process, meaning that the `main` thread can create child threads to perform tasks concurrently. These threads operate independently, and because they do not execute in a predetermined order, the outcomes may vary depending on the scheduling of threads by the system.
+  - To create a thread in Java, you can either extend the `Thread` class or implement the `Runnable` interface. This flexibility allows for a more modular approach to multithreading.
+
+- **Thread States**
+
+  - `Startable`: The thread is created but the `start()` method has not been called.
+  - `Runnable`: The `start()` method has been called, but the thread is waiting for CPU time.
+  - `Running`: The thread is currently executing code and has acquired CPU time.
+  - `Not Running`: The thread is paused or waiting.
+
+- **Thread Synchronization**
+
+  - In multithreading, multiple threads may need to access shared resources concurrently, which can lead to data inconsistency and unpredictable behavior. Synchronization is the process of controlling thread access to shared resources to maintain data consistency.
+  - Java provides the `synchronized` keyword to ensure that only one thread can access a synchronized block or method at a time, effectively creating a lock on the resource. This approach prevents conflicts but can also reduce performance if used excessively.
+
+  ```java
+  public class Counter {
+    private int count;
+
+    public Counter() {
+      count = 0;
     }
-  };
-System.out.println(addable1.add(10, 10));
 
-// Lambda Expression
-  Addable addable2 = (int a, int b) -> {
-      return (a + b);
-  };
-  System.out.println(addable2.add(10, 10));
-```
-
-<br />
-
-<hr />
-
-<h2>11장. 멀티스레드 프로그래밍</h2>
-
-- 프로세스와 스레드
-
-  - 프로세스는 실행 중인 프로그램을 나타냅니다. Java 프로그램은 하나의 프로세스로 만들어져 실행되며 각 프로세스는 하나 이상의 스레드를 가질 수 있습니다.
-  - 스레드는 프로세스 내에서 실행되는 작은 실행 단위를 말합니다. 각 프로세스는 하나 이상의 스레드를 가질 수 있으며, 각 스레드는 동시에 실행될 수 있습니다. 스레드는 경량 프로세스라고 생각할 수도 있습니다.
-  - 멀티 스레드는 하나의 프로세스 내에서 여러 개의 스레드가 동시에 실행되는 것을 의미합니다. main 스레드에서 자식 스레드를 만들어서 멀티 스레드를 시작할 수 있으면 여러 스레드는 독립적으로 실행되고 종료됩니다. 독립적으로 실행되기에 실행 결과가 하나로 결정되지 않습니다.
-  - 스레드를 실행하기 위해서는 Thread 클래스를 상속 (extends Thread) 받거나 Runnable 인터페이스를 구현 (implements Runnable) 하여야 합니다.
-
-- 스레드의 상태
-
-  - Startable: 스레드가 생성되었지만 아직 start() 메서드가 호출되지 않은 상태.
-  - Runnable: start() 메서드가 호출되었으나 CPU를 획득하기 이전 상태.
-  - Running: CPU를 얻어 실행 중인 상태.
-  - Not Running: CPU를 잃고 중단된 상태.
-
-- 스레드 동기화
-
-  - 여러 스레드가 공유 자원에 동시에 접근하는 경우 자원의 일관성이 깨질 수 있습니다. 이 문제를 막기위해 한 번에 오직 한 개의 스레드만이 공유 객체에 접근할 수 있도록 제한하는 것을 말합니다.
-  - 이를 위해 synchronized 키워드를 사용할 수 있습니다. synchronized 메소드는 한 번에 오직 하나의 스레드에서만 실행이 가능한 메소드를 말합니다. 아래 코드의 increment 메소드가 synchronized 메소드의 예시입니다.
-
-```
-public class Counter {
-  private int count;
-
-  public Counter() {
-    count = 0;
+    public synchronized void increment() {
+      count++;
+    }
   }
+  ```
 
-  public synchronized void increment() {
-    count++;
-  }
-}
-```
+  ```java
+  Counter counter = new Counter();
 
-```
-Counter counter = new Counter();
+  Thread thread1 = new Thread(() -> {
+    for (int i = 0; i < 1000; i++) {
+      counter.increment();
+    }
+  });
 
-Thread thread1 = new Thread(() -> {
-  for (int i = 0; i < 1000; i++) {
-    counter.increment();
-  }
-});
+  Thread thread2 = new Thread(() -> {
+    for (int i = 0; i < 1000; i++) {
+      counter.increment();
+    }
+  });
 
-Thread thread2 = new Thread(() -> {
-  for (int i = 0; i < 1000; i++) {
-    counter.increment();
-  }
-});
+  thread1.start();
+  thread2.start();
+  ```
 
-thread1.start();
-thread2.start();
-```
+---
 
-<br />
+## Chapter 14: JDBC Programming
 
-<hr />
+- **Connecting to a DBMS**
 
-<h2>14장. JDBC 프로그래밍</h2>
+  - To connect to a database, you need the database URL, user ID, and password. The `DriverManager.getConnection` method is used to establish a connection to the database.
 
-- DBMS와 연결
+  ```java
+  String url = "jdbc:mysql://server_address:3306/database_name";
+  String user = "username";
+  String password = "password";
 
-```
-String url = "jdbc:mysql://서버주소:3306/db이름";
-String user = "사용자아이디";
-String password = "비밀번호";
+  Connection conn = DriverManager.getConnection(url, user, password);
+  ```
 
-Connection conn = DriverManager.getConnection(url, user, password);
-```
+- **Executing SQL Statements**
 
-- SQL 실행
   - executeQuery()
-    - select sql 문을 실행하는 데에 사용합니다.
-    - ResultSet 객체를 리턴합니다. 이 객체를 순회하며 데이터를 읽을 수 있습니다.
+
+    - Used for `SELECT` statements to retrieve data from the database.
+    - Returns a `ResultSet` object, which can be iterated to access the data.
+
+    ```java
+    Statement statement = conn.createStatement();
+
+    ResultSet rs = statement.executeQuery("SELECT * FROM Book");
+
+    while(rs.next()) {
+      System.out.print(rs.getString("title") + "\t");
+      System.out.print(rs.getString("author") + "\t");
+      System.out.println(rs.getInt("price") + "\t");
+    }
+    ```
+
   - executeUpdate()
-    - insert, update, delete 등 데이터베이스의 값에 영향을 주는 sql 문을 실행하는 데에 사용합니다.
-    - sql 문에 의해 변경된 행의 수를 반환합니다.
 
-```
-Statement stmt = conn.createStatement();
+    - Used for `INSERT`, `UPDATE`, or `DELETE` statements that modify data in the database.
+    - Returns the number of rows affected by the SQL statement.
 
-ResultSet rs = stmt.executeQuery("select * from Book");
+    ```java
+      String updateQuery = "UPDATE Book SET price = 25000 WHERE title = 'Effective Java'";
 
-System.out.println("Title\t\tAuthor\tPrice");
-while(rs.next()) {
-  System.out.print(rs.getString("title") + "\t");
-  System.out.print(rs.getString("author") + "\t");
-  System.out.println(rs.getInt("price") + "\t");
-}
-```
+      int rowsAffected = stmt.executeUpdate(updateQuery);
+    ```
 
-- PreparedStatement 객체
-  - Precompile된 SQL 문을 표현한다.
-  - SQL 구문을 실행할 때가 아니라 객체를 생성할 때 SQL문을 지정한다.
-  - 같은 SQL 구문을 여러 번 실행할 때 효율적으로 활용할 수 있다.
-  - 객체를 만들 때 SQL 문 안에 Placeholder (?) 를 넣은 후, 실행 직전에 값을 지정할 수도 있다.
+- **PreparedStatement Object**
 
-```
-String query = "insert into Book values(?, ?, ?)";
-PreparedStatement ps = conn.prepareStatement(query);
+  - A `PreparedStatement` is a precompiled SQL statement that can be used multiple times with different parameter values. It improves performance and helps prevent SQL injection attacks.
+  - You can specify parameters using placeholders (`?`), which can be set to different values before execution.
 
-ps.setString(1, "이펙티브 타입스크립트");
-ps.setString(2, "댄 밴더캄");
-ps.setInt(3, 22500);
+  ```java
+  String query = "INSERT INTO Book VALUES (?, ?, ?)";
+  PreparedStatement ps = conn.prepareStatement(query);
 
-int ResultCount = ps.executeUpdate();
-```
+  ps.setString(1, "Effective TypeScript");
+  ps.setString(2, "Dan Vanderkam");
+  ps.setInt(3, 22500);
 
-```
-String query = "select * from Book where price > ?";
-PreparedStatement ps = conn.prepareStatement(query);
+  int resultCount = ps.executeUpdate();
+  ```
 
-ps.setInt(1, 100);
-ResultSet rs = ps.executeQuery();
-```
+  ```java
+  String query = "SELECT * FROM Book WHERE price > ?";
+  PreparedStatement ps = conn.prepareStatement(query);
+
+  ps.setInt(1, 100);
+  ResultSet rs = ps.executeQuery();
+
+  while (rs.next()) {
+    System.out.println(rs.getString("title") + ", " + rs.getInt("price"));
+  }
+  ```
