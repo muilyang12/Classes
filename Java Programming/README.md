@@ -1,5 +1,9 @@
 # Java Programming Class
 
+## Overview
+
+This document is a structured collection of key Java programming concepts I studied while preparing for tests and quizzes. It covers essential topics such as classes, inheritance, interfaces, polymorphism, multithreading, and JDBC programming. By organizing the material in a clear and accessible format, I aim to reinforce my understanding and provide a quick reference guide to revisit these concepts as needed.
+
 ## Chapter 3: Classes and Inheritance
 
 - **Final Fields and Methods**
