@@ -29,14 +29,27 @@ This repository contains implementations of various machine learning algorithms,
 
 - [k-Nearest Neighbors (k-NN)](https://github.com/muilyang12/Classes/tree/master/Machine%20Learning/kNearestNeighbors)
 
-  - <details>
-        <summary>GIF file</summary>
-        <img src="./k-NN.gif" alt="k-NN GIF file" />
-    </details>
-
 - [Decision Tree](https://github.com/muilyang12/Classes/tree/master/Machine%20Learning/DecisionTree)
 
-  - <details>
-        <summary>GIF file</summary>
-        <img src="./Decision Tree.gif" alt="Decision Tree GIF file" />
-    </details>
+## Setup
+
+1. Create a Virtual Environment and Activate it
+
+```
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+2. Install Required Packages
+
+```
+pip install -r requirements.txt
+```
+
+3. Run the Code
+
+```
+python ./SVM/main.py
+
+python ./kNearestNeighbors/main.py
+```
