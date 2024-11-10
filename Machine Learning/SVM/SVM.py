@@ -1,6 +1,4 @@
 import numpy as np
-from sklearn.datasets import make_blobs
-import matplotlib.pyplot as plt
 
 
 class SVM:
@@ -13,7 +11,7 @@ class SVM:
         self.epochs = epochs
 
     def fit(self, XTrain, yTrain, callback=None):
-        nSamples, nFeatures = XTrain.shape
+        _, nFeatures = XTrain.shape
 
         self.w = np.zeros(nFeatures)
         self.b = 0
