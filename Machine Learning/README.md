@@ -9,27 +9,39 @@ This repository contains implementations of various machine learning algorithms,
 - [Linear Regression](https://github.com/muilyang12/Classes/tree/master/Machine%20Learning/LinearRegression)
 
   - <details>
-        <summary>GIF file</summary>
-        <img src="./Linear Regression.gif" alt="Linear Regression GIF file" />
+        <summary>Image</summary>
+        <img src="https://muilyang12.github.io/assets/Classes%20-%20ML%20(LR%20with%20MSE).gif" alt="Linear Regression Image" width=500 />
     </details>
 
 - [Perceptron](https://github.com/muilyang12/Classes/tree/master/Machine%20Learning/Perceptron)
 
   - <details>
-        <summary>GIF file</summary>
-        <img src="./Perceptron.gif" alt="Perceptron GIF file" />
+        <summary>Image</summary>
+        <img src="https://muilyang12.github.io/assets/Classes%20-%20ML%20(Perceptron).gif" alt="Perceptron Image" width=500 />
     </details>
 
 - [Support Vector Machines (SVM)](https://github.com/muilyang12/Classes/tree/master/Machine%20Learning/SVM)
 
   - <details>
-        <summary>GIF file</summary>
-        <img src="./SVM.gif" alt="SVM GIF file" />
+        <summary>Image</summary>
+        <img src="https://muilyang12.github.io/assets/Classes%20-%20ML%20(SVM).gif" alt="SVM Image" width=500 />
     </details>
 
 - [k-Nearest Neighbors (k-NN)](https://github.com/muilyang12/Classes/tree/master/Machine%20Learning/kNearestNeighbors)
 
 - [Decision Tree](https://github.com/muilyang12/Classes/tree/master/Machine%20Learning/DecisionTree)
+
+  - <details>
+        <summary>Image</summary>
+        <img src="https://muilyang12.github.io/assets/Classes%20-%20ML%20(Decision%20Tree).png" alt="Decision Tree Image" width=500 />
+    </details>
+
+- [K Means Clustering](https://github.com/muilyang12/Classes/tree/master/Machine%20Learning/kMeansClustering)
+
+  - <details>
+        <summary>Image</summary>
+        <img src="https://muilyang12.github.io/assets/Classes%20-%20ML%20(K%20Means%20Clustering).png" alt="K Means Clustering Image" width=500 />
+    </details>
 
 ## Setup
 
