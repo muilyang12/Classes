@@ -33,12 +33,12 @@ class ImageColorQuantizer:
 
         plt.subplot(2, 3, 5)
         plt.imshow(quantized_image_with_5)
-        plt.title("Grayscale with 5 colors")
+        plt.title("Quantized with 5 colors")
         plt.axis("off")
 
         plt.subplot(2, 3, 6)
         plt.imshow(quantized_image_with_7)
-        plt.title("Grayscale with 7 colors")
+        plt.title("Quantized with 7 colors")
         plt.axis("off")
 
         plt.show()
