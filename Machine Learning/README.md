@@ -43,6 +43,8 @@ This repository contains implementations of various machine learning algorithms,
         <img src="https://muilyang12.github.io/assets/Classes%20-%20ML%20(K%20Means%20Clustering).png" alt="K Means Clustering Image" width=500 />
     </details>
 
+- [Logistic Regression](https://github.com/muilyang12/Classes/tree/master/Machine%20Learning/LogisticRegression)
+
 ## Setup
 
 1. Create a Virtual Environment and Activate it
