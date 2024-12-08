@@ -32,4 +32,6 @@ class LogisticRegression:
         return np.where(y_pred >= 0.5, 1, 0)
 
     def sigmoid(self, z: np.ndarray):
+        z = np.clip(z, -500, 500)
+
         return 1 / (1 + np.exp(-z))
