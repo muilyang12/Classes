@@ -19,7 +19,7 @@ class Clustering:
             np.random.choice(data.shape[0], self.num_clusters, replace=False)
         ]
 
-        for _ in range(self.epochs):
+        for epoch in range(self.epochs):
             clusters = self.get_closest_cluster(data)
 
             new_centroids = []
@@ -36,6 +36,11 @@ class Clustering:
                 new_centroids.append(centroid)
 
             self.centroids = np.array(new_centroids)
+
+            if epoch % 10 == 0:
+                error = self.calculate_error(data)
+
+                print(f"Error: {error}")
 
     def predict(self, data: np.ndarray):
         return self.get_closest_cluster(data)
@@ -67,3 +72,15 @@ class Clustering:
         min_distance_sum_index = np.argmin(distance_sums)
 
         return points[min_distance_sum_index]
+
+    def calculate_error(self, data):
+        clusters = self.get_closest_cluster(data)
+
+        error = 0
+
+        for i, centroid in enumerate(self.centroids):
+            cluster_points = data[clusters == i]
+
+            error += np.sum(np.linalg.norm(cluster_points - centroid, axis=1))
+
+        return error
