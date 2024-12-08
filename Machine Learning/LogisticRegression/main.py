@@ -34,3 +34,18 @@ train_accuracy, test_accuracy = runLogisticRegression(X, y)
 
 print(f"Train Data Accuracy: {train_accuracy:.5f}")
 print(f"Test Data Accuracy: {test_accuracy:.5f}")
+
+from sklearn.preprocessing import PolynomialFeatures
+
+for degree in range(2, 6):
+    polynomial = PolynomialFeatures(degree)
+    X = polynomial.fit_transform(X)
+
+    print(X.shape)
+
+    train_accuracy, test_accuracy = runLogisticRegression(X, y)
+
+    print(f"===== After adding polynomial features of degree {degree}. =====")
+
+    print(f"Train Data Accuracy: {train_accuracy:.5f}")
+    print(f"Test Data Accuracy: {test_accuracy:.5f}")
