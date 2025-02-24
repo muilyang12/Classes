@@ -7,3 +7,5 @@ This repository contains implementations of various computer graphics algorithms
 ## Contents
 
 - MVP Transformation
+
+- Rasterization
