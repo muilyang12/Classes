@@ -6,14 +6,14 @@ This repository contains implementations of various computer graphics algorithms
 
 ## Algorithms Implemented
 
-- [MVP Transformation](https://github.com/muilyang12/Classes/blob/master/Computer%20Graphics/1.%20MVP.cpp)
+- [Rasterization](https://github.com/muilyang12/Classes/blob/master/Computer%20Graphics/2.%20Rasterization.cpp)
 
   - <details>
         <summary>Image</summary>
         <img src="https://muilyang12.github.io/assets/Classes - CG (Rasterization).png" alt="Rasterization Image" width=500 />
     </details>
 
-- [Rasterization](https://github.com/muilyang12/Classes/blob/master/Computer%20Graphics/2.%20Rasterization.cpp)
+- [MVP Transformation](https://github.com/muilyang12/Classes/blob/master/Computer%20Graphics/1.%20MVP.cpp)
 
   - <details>
         <summary>Image</summary>
