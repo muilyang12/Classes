@@ -8,7 +8,7 @@
     [0      0       0   1]
 */
 
-Eigen::Matrix4f get_model_matrix(float rotationAngleZ)
+Eigen::Matrix4f getModelMatrix(float rotationAngleZ)
 {
     Eigen::Matrix4f model = Eigen::Matrix4f::Identity();
 
@@ -37,8 +37,8 @@ Eigen::Matrix4f get_model_matrix(float rotationAngleZ)
     - 't' = n * tan(fov/2), the top of the frustum in camera space.
     - 'r' = t * aspectRatio, the right side of the frustum in camera space.
 */
-Eigen::Matrix4f get_projection_matrix(float eyeFov, float aspectRatio,
-                                      float zNear, float zFar)
+Eigen::Matrix4f getProjectionMatrix(float eyeFov, float aspectRatio,
+                                    float zNear, float zFar)
 {
     Eigen::Matrix4f projection = Eigen::Matrix4f::Identity();
 
