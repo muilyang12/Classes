@@ -6,6 +6,13 @@ This repository contains implementations of various computer graphics algorithms
 
 ## Algorithms Implemented
 
+- [3. Lighting & Texture](https://github.com/muilyang12/Classes/blob/master/Computer%20Graphics/3.%20Lighting%20%26%20Texture.cpp)
+
+  - <details>
+        <summary>Image</summary>
+        <img src="https://muilyang12.github.io/assets/Classes - CG (Lighting & Texture).png" alt="Lighting & Texture Image" width=500 />
+    </details>
+
 - [2. Rasterization](https://github.com/muilyang12/Classes/blob/master/Computer%20Graphics/2.%20Rasterization.cpp)
 
   - <details>
