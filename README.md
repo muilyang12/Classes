@@ -6,13 +6,14 @@
 
 ## Class List
 
+- **Graduate Courses**
+
+  - [Computer Graphics](https://github.com/muilyang12/Classes/tree/master/Computer%20Graphics)
+  - [Database Design](https://github.com/muilyang12/Classes/tree/master/Database%20Design)
+  - [Machine Learning](https://github.com/muilyang12/Classes/tree/master/Machine%20Learning)
+
 - **Undergraduate Courses**
 
   - [Java Programming](https://github.com/muilyang12/Classes/tree/master/Java%20Programming)
   - [C++ Programming](https://github.com/muilyang12/Classes/tree/master/C%2B%2B%20Programming)
   - [Algorithm](https://github.com/muilyang12/Classes/tree/master/Algorithm)
-
-- **Graduate Courses**
-
-  - [Database Design](https://github.com/muilyang12/Classes/tree/master/Database%20Design)
-  - [Machine Learning](https://github.com/muilyang12/Classes/tree/master/Machine%20Learning)
