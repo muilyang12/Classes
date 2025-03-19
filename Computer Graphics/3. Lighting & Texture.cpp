@@ -25,13 +25,13 @@ Eigen::Vector3f phong_fragment_shader(const fragment_shader_payload &payload)
 
     Eigen::Vector3f amb_light_intensity{10, 10, 10};
 
-    Eigen::Vector3f eye_pos{0, 0, 10};
+    Eigen::Vector3f eyePosition{0, 0, 10};
 
     float p = 150.f;
 
     Eigen::Vector3f point = payload.view_pos;
     Eigen::Vector3f normal = payload.normal.normalized();
-    Eigen::Vector3f viewDirection = (eye_pos - point).normalized();
+    Eigen::Vector3f viewDirection = (eyePosition - point).normalized();
 
     Eigen::Vector3f resultColor = {0, 0, 0};
 
