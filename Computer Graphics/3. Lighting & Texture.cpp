@@ -215,3 +215,87 @@ Eigen::Vector3f displacement_fragment_shader(
 
     return resultColor * 255.f;
 }
+
+/*
+    Attribute Interpolation
+    - When a triangle is rasterized, each fragment (pixel) inside the triangle needs to have
+      the correct values for
+      - Color (for shading)
+      - Normal (for lighting calculations)
+      - Texture Coordinates (for texture mapping)
+      - View Position (for perspective calculations)
+    - Since these values are only defined at the triangle's three vertices, we need to use
+      barycentric interpolation to estimate them at each fragment.
+      -> interpolated_attr = alpha * attr1 + beta * attr2 + gamma * attr3
+    - However, if we apply naive barycentric interpolation in screen space, it does not account
+      for depth differences between vertices, causing perspective distortion. To correct this,
+      instead of directly interpolating attributes, we first divide them by "w" before interpolation
+      and then multiply by "w_reciprocal" after interpolation.
+      -> interpolated_attr = (alpha * (attr1 / w1) + beta * (attr2 / w2) + gamma * (attr3 / w3)) * w_reciprocal
+*/
+void rst::rasterizer::rasterize_triangle(
+    const Triangle &t, const std::array<Eigen::Vector3f, 3> &view_pos,
+    const Eigen::Matrix3f &TBN)
+{
+    auto v = t.toVector4();
+
+    // Compute the bounding box of the triangle
+    float minX = std::min({v[0].x(), v[1].x(), v[2].x()});
+    float maxX = std::max({v[0].x(), v[1].x(), v[2].x()});
+    float minY = std::min({v[0].y(), v[1].y(), v[2].y()});
+    float maxY = std::max({v[0].y(), v[1].y(), v[2].y()});
+
+    int left = (int)std::floor(minX);
+    int right = (int)std::floor(maxX);
+    int bottom = (int)std::floor(minY);
+    int top = (int)std::floor(maxY);
+
+    // Iterate over every pixel in the bounding box
+    for (int x = left; x <= right; x++)
+    {
+        for (int y = bottom; y <= top; y++)
+        {
+            float pixelCenterX = (float)x + 0.5f;
+            float pixelCenterY = (float)y + 0.5f;
+
+            // Check if inside the triangle using barycentric coordinates
+            if (insideTriangle(pixelCenterX, pixelCenterY, t.v))
+            {
+                // Get interpolated Z value
+                auto [alpha, beta, gamma] = computeBarycentric2D(pixelCenterX, pixelCenterY, t.v);
+                float w_reciprocal = 1.0f / (alpha / v[0].w() + beta / v[1].w() + gamma / v[2].w());
+                float z_interpolated = alpha * v[0].z() / v[0].w() + beta * v[1].z() / v[1].w() + gamma * v[2].z() / v[2].w();
+                z_interpolated *= w_reciprocal;
+
+                int index = get_index(x, y);
+
+                if (z_interpolated < depth_buf[index])
+                {
+                    depth_buf[index] = z_interpolated;
+
+                    // Interpolate attributes (color, normal, texture coordinates, view position)
+                    Eigen::Vector3f interpolatedColor = (alpha * t.color[0] / v[0].w() + beta * t.color[1] / v[1].w() + gamma * t.color[2] / v[2].w()) * w_reciprocal;
+
+                    Eigen::Vector3f interpolatedNormal = (alpha * t.normal[0] / v[0].w() + beta * t.normal[1] / v[1].w() + gamma * t.normal[2] / v[2].w()) * w_reciprocal;
+
+                    Eigen::Vector2f interpolatedTextCoor = (alpha * t.tex_coords[0] / v[0].w() + beta * t.tex_coords[1] / v[1].w() + gamma * t.tex_coords[2] / v[2].w()) * w_reciprocal;
+
+                    Eigen::Vector3f interpolatedViewPosition = (alpha * view_pos[0] / v[0].w() + beta * view_pos[1] / v[1].w() + gamma * view_pos[2] / v[2].w()) * w_reciprocal;
+
+                    // Construct the payload for the fragment shader and invoke the fragment shader
+                    fragment_shader_payload payload(
+                        interpolatedColor,
+                        interpolatedNormal.normalized(),
+                        interpolatedTextCoor,
+                        texture ? &*texture : nullptr,
+                        TBN);
+                    payload.view_pos = interpolatedViewPosition;
+                    Eigen::Vector3f pixelColor = fragment_shader(payload);
+
+                    // Write the resulting color to the frame buffer
+                    set_pixel(Eigen::Vector2i(x, y), pixelColor);
+                }
+            }
+        }
+    }
+}
