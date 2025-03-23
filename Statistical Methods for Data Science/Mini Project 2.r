@@ -1,4 +1,4 @@
-runnersData <- read.csv("C:/...../roadrace.csv", header = TRUE)
+runnersData <- read.csv("C:/Users/Yang/Desktop/Study/Classes/Statistical Methods for Data Science/roadrace.csv", header = TRUE)
 fromMaineOrAwayTable <- table(runnersData$Maine)
 
 fromMaineOrAwayTable
@@ -105,3 +105,44 @@ runnersFemaleStats <- c(
 )
 
 runnersFemaleStats
+
+# ==================================================
+
+accidentsData <- read.csv("C:/Users/Yang/Desktop/Study/Classes/Statistical Methods for Data Science/motorcycle.csv", header = TRUE)
+
+accidentsStats <- c(
+    mean = mean(accidentsData$Fatal.Motorcycle.Accidents),
+    sd = sd(accidentsData$Fatal.Motorcycle.Accidents),
+    min = min(accidentsData$Fatal.Motorcycle.Accidents),
+    max = max(accidentsData$Fatal.Motorcycle.Accidents),
+    median = median(accidentsData$Fatal.Motorcycle.Accidents),
+    IQR = IQR(accidentsData$Fatal.Motorcycle.Accidents)
+)
+
+accidentsStats
+
+hist(
+    runnersAway$Time..minutes.,
+    main = "Histogram of Fatal Motorcycle Accidents",
+    xlab = "Number of Accidents",
+)
+
+boxplot(
+    accidentsData$Fatal.Motorcycle.Accidents,
+    main = "Boxplot of Fatal Motorcycle Accidents",
+    ylab = "Number of Accidents",
+    outline = FALSE
+)
+
+q1 <- quantile(accidentsData$Fatal.Motorcycle.Accidents, 0.25)
+q3 <- quantile(accidentsData$Fatal.Motorcycle.Accidents, 0.75)
+
+lowerBoundary <- q1 - 1.5 * accidentsStats["IQR"]
+upperBoundary <- q3 + 1.5 * accidentsStats["IQR"]
+
+outlierRows <- accidentsData[
+    accidentsData$Fatal.Motorcycle.Accidents < lowerBoundary |
+    accidentsData$Fatal.Motorcycle.Accidents > upperBoundary
+]
+
+outlierRows$County
