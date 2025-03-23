@@ -6,6 +6,13 @@ This repository contains implementations of various computer graphics algorithms
 
 ## Algorithms Implemented
 
+- [4. Bezier Curve](https://github.com/muilyang12/Classes/blob/master/Computer%20Graphics/4.%20Bezier%20Curve.cpp)
+
+  - <details>
+        <summary>Image</summary>
+        <img src="https://muilyang12.github.io/assets/Classes - CG (Bezier Curve).png" alt="Bezier Curve" width=500 />
+    </details>
+
 - [3. Lighting & Texture](https://github.com/muilyang12/Classes/blob/master/Computer%20Graphics/3.%20Lighting%20%26%20Texture.cpp)
 
   - <details>
