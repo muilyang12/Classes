@@ -9,8 +9,9 @@
 - **Graduate Courses**
 
   - [Computer Graphics](https://github.com/muilyang12/Classes/tree/master/Computer%20Graphics)
-  - [Database Design](https://github.com/muilyang12/Classes/tree/master/Database%20Design)
   - [Machine Learning](https://github.com/muilyang12/Classes/tree/master/Machine%20Learning)
+  - [Database Design](https://github.com/muilyang12/Classes/tree/master/Database%20Design)
+  - [Statistics for Data Science](https://github.com/muilyang12/Classes/tree/master/Statistics%20for%20Data%20Science)
 
 - **Undergraduate Courses**
 
