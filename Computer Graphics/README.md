@@ -17,7 +17,7 @@ This repository contains implementations of various computer graphics algorithms
 
   - <details>
         <summary>Image</summary>
-        <img src="https://muilyang12.github.io/assets/Classes - CG (Lighting & Texture).png" alt="Lighting & Texture Image" width=500 />
+        <img src="https://muilyang12.github.io/assets/Classes - CG (Lighting & Texture).png" alt="Lighting & Texture Image" width=800 />
     </details>
 
 - [2. Rasterization](https://github.com/muilyang12/Classes/blob/master/Computer%20Graphics/2.%20Rasterization.cpp)
