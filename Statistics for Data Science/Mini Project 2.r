@@ -1,4 +1,4 @@
-runnersData <- read.csv("C:/Users/Yang/Desktop/Study/Classes/Statistical Methods for Data Science/roadrace.csv", header = TRUE)
+runnersData <- read.csv("C:/...../roadrace.csv", header = TRUE)
 fromMaineOrAwayTable <- table(runnersData$Maine)
 
 fromMaineOrAwayTable
@@ -11,6 +11,8 @@ barplot(
 )
 
 # ==================================================
+
+runnersData <- read.csv("C:/...../roadrace.csv", header = TRUE)
 
 runnersFromMaine <- subset(runnersData, Maine == "Maine")
 runnersAway <- subset(runnersData, Maine == "Away")
@@ -56,6 +58,8 @@ runnersAwayStats
 
 # ==================================================
 
+runnersData <- read.csv("C:/...../roadrace.csv", header = TRUE)
+
 runnersFromMaine <- subset(runnersData, Maine == "Maine")
 runnersAway <- subset(runnersData, Maine == "Away")
 
@@ -70,6 +74,8 @@ boxplot(
 )
 
 # ==================================================
+
+runnersData <- read.csv("C:/...../roadrace.csv", header = TRUE)
 
 runnersMale <- subset(runnersData, Sex == "M")
 runnersFemale <- subset(runnersData, Sex == "F")
@@ -108,7 +114,7 @@ runnersFemaleStats
 
 # ==================================================
 
-accidentsData <- read.csv("C:/Users/Yang/Desktop/Study/Classes/Statistical Methods for Data Science/motorcycle.csv", header = TRUE)
+accidentsData <- read.csv("C:/...../motorcycle.csv", header = TRUE)
 
 accidentsStats <- c(
     mean = mean(accidentsData$Fatal.Motorcycle.Accidents),
@@ -134,15 +140,27 @@ boxplot(
     outline = FALSE
 )
 
+# ==================================================
+
+accidentsData <- read.csv("C:/...../motorcycle.csv", header = TRUE)
+
 q1 <- quantile(accidentsData$Fatal.Motorcycle.Accidents, 0.25)
 q3 <- quantile(accidentsData$Fatal.Motorcycle.Accidents, 0.75)
 
-lowerBoundary <- q1 - 1.5 * accidentsStats["IQR"]
-upperBoundary <- q3 + 1.5 * accidentsStats["IQR"]
+lowerBoundary <- q1 - 1.5 * IQR(accidentsData$Fatal.Motorcycle.Accidents)
+upperBoundary <- q3 + 1.5 * IQR(accidentsData$Fatal.Motorcycle.Accidents)
 
-outlierRows <- accidentsData[
-    accidentsData$Fatal.Motorcycle.Accidents < lowerBoundary |
+outliersCounties <- accidentsData$County[
+  accidentsData$Fatal.Motorcycle.Accidents < lowerBoundary |
     accidentsData$Fatal.Motorcycle.Accidents > upperBoundary
 ]
 
-outlierRows$County
+outliersTable <- data.frame(
+  q1 = q1,
+  q3 = q3,
+  lowerBoundary = lowerBoundary,
+  upperBoundary = upperBoundary,
+  outlierCounties = toString(outliers)
+)
+
+outliersTable
