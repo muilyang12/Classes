@@ -58,3 +58,38 @@ N <- 1000
 
 result <- simulate(nValues, thetaValues, N)
 result
+
+# ==================================================
+
+createAccuracyTableWithPercentBias <- function(result) {
+  result$`accuracyMLE` <- ((result$mseMLE - result$theta) / result$theta) * 100
+  result$`accuracyMoM` <- ((result$mseMoM - result$theta) / result$theta) * 100
+  
+  accuracyTable <- result[, c("n", "theta", "accuracyMLE", "accuracyMoM")]
+
+  return(accuracyTable)
+}
+
+accuracyTable <- createAccuracyTableWithPercentBias(result)
+
+accuracyTable
+
+# ==================================================
+
+x <- c(21.72, 14.65, 50.42, 28.78, 11.23)
+
+minusLogLikelihood <- function(theta, x) {
+  if (theta <= 0) return(Inf)
+  
+  n <- length(x)
+
+  return(- ( n * log(theta) - (theta + 1) * sum(log(x)) ))
+}
+
+result <- optimize(
+    f = minusLogLikelihood, 
+    interval = c(0.0001, 10), 
+    x = x
+)
+
+result$minimum
