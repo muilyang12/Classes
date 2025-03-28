@@ -24,7 +24,6 @@ public class RaycastManager : MonoBehaviour
 
     public float maxDistance = 50f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -34,7 +33,6 @@ public class RaycastManager : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
