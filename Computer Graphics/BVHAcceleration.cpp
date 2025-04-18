@@ -17,12 +17,7 @@ Intersection getIntersection(BVHBuildNode *node, const Ray &ray)
     if (node == nullptr)
         return intersection;
 
-    std::array<int, 3> dirIsNeg;
-    dirIsNeg[0] = (ray.direction.x > 0) ? 1 : 0;
-    dirIsNeg[1] = (ray.direction.y > 0) ? 1 : 0;
-    dirIsNeg[2] = (ray.direction.z > 0) ? 1 : 0;
-
-    if (!node->bounds.IntersectP(ray, ray.direction_inv, dirIsNeg))
+    if (!node->bounds.IntersectP(ray, ray.direction_inv))
         return intersect;
 
     if (node->left == nullptr && node->right == nullptr)
@@ -52,7 +47,7 @@ Intersection getIntersection(BVHBuildNode *node, const Ray &ray)
     for each axis x, y, and z. It checks whether the ray intersects the box on all three axes simultaneously
     by determining if a valid intersection interval exists.
 */
-bool IntersectP(const Ray &ray, const Vector3f &invDir, const std::array<int, 3> &dirIsNeg)
+bool IntersectP(const Ray &ray, const Vector3f &invDir)
 {
     double tEnter = -std::numeric_limits<double>::infinity();
     double tExit = std::numeric_limits<double>::infinity();
@@ -62,7 +57,7 @@ bool IntersectP(const Ray &ray, const Vector3f &invDir, const std::array<int, 3>
         double t0 = (pMin[i] - ray.origin[i]) * invDir[i];
         double t1 = (pMax[i] - ray.origin[i]) * invDir[i];
 
-        if (!dirIsNeg[i])
+        if (t0 > t1)
             std::swap(t0, t1);
 
         tEnter = std::max(tEnter, t0);
