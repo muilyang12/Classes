@@ -17,9 +17,11 @@ Intersection getIntersection(BVHBuildNode *node, const Ray &ray)
     if (node == nullptr)
         return intersection;
 
+    // Check if the ray intersects its bounding box
     if (!node->bounds.IntersectP(ray, ray.direction_inv))
         return intersect;
 
+    // If this is a leaf node, compute the actual intersection with the object
     if (node->left == nullptr && node->right == nullptr)
         return node->object->getIntersection(ray);
 
@@ -54,9 +56,10 @@ bool IntersectP(const Ray &ray, const Vector3f &invDir)
 
     for (int i = 0; i < 3; i++)
     {
+        // t0 is the distance (time) to the near plane (entering the box), and t1 is the distance (time) to
+        // the far plane (exiting the box).
         double t0 = (pMin[i] - ray.origin[i]) * invDir[i];
         double t1 = (pMax[i] - ray.origin[i]) * invDir[i];
-
         if (t0 > t1)
             std::swap(t0, t1);
 
