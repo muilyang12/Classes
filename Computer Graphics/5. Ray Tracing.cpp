@@ -47,6 +47,13 @@ bool doesRayTriangleIntersect(const Vector3f &v0, const Vector3f &v1,
     return true;
 }
 
+/*
+    Ray Generation
+
+    This is the core ray generation process used in ray tracing. For each pixel on the screen, a ray is
+    constructed that starts at the camera position and passes through a corresponding point on the view
+    plane in world space.
+*/
 void render(const Scene &scene)
 {
     std::vector<Vector3f> framebuffer(scene.width * scene.height);
