@@ -44,3 +44,17 @@ tTest <- t.test(remoteData, localData, var.equal=fTest$p.value > 0.05, conf.leve
 tTest$p.value
 
 tTest$conf.int
+
+# ==================================================
+
+vaporData <- read.csv("C:/...../VAPOR.csv", header = TRUE)
+
+vaporData$difference <- vaporData$theoretical - vaporData$experimental
+
+vaporData
+
+tTest <- t.test(vaporData$experimental, vaporData$theoretical, paired = TRUE, conf.level = 0.95)
+
+tTest$p.value
+
+tTest$conf.int
