@@ -1,4 +1,4 @@
-voltageData <- read.csv("C:/Users/Yang/Desktop/Study/Classes/Statistics for Data Science/VOLTAGE.csv", header = TRUE)
+voltageData <- read.csv("C:/...../VOLTAGE.csv", header = TRUE)
 
 remoteData <- voltageData[voltageData$location == 0, ]$voltage
 localData <- voltageData[voltageData$location == 1, ]$voltage
@@ -30,7 +30,7 @@ par(mfrow = c(1, 1))
 
 # ==================================================
 
-voltageData <- read.csv("C:/Users/Yang/Desktop/Study/Classes/Statistics for Data Science/VOLTAGE.csv", header = TRUE)
+voltageData <- read.csv("C:/...../VOLTAGE.csv", header = TRUE)
 
 remoteData <- voltageData[voltageData$location == 0, ]$voltage
 localData <- voltageData[voltageData$location == 1, ]$voltage
