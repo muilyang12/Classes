@@ -1,10 +1,13 @@
-voltageData <- read.csv("C:/...../VOLTAGE.csv", header = TRUE)
+voltageData <- read.csv("C:/Users/Yang/Desktop/Study/Classes/Statistics for Data Science/VOLTAGE.csv", header = TRUE)
 
 remoteData <- voltageData[voltageData$location == 0, ]$voltage
 localData <- voltageData[voltageData$location == 1, ]$voltage
 
 summary(remoteData)
 summary(localData)
+
+sd(remoteData)
+sd(localData)
 
 boxplot(remoteData, localData, names=c("Remote", "Local"), ylab = "Voltage")
 
@@ -51,7 +54,12 @@ vaporData <- read.csv("C:/...../VAPOR.csv", header = TRUE)
 
 vaporData$difference <- vaporData$theoretical - vaporData$experimental
 
-vaporData
+summary(vaporData$difference)
+
+sd(vaporData$difference)
+
+hist(vaporData$difference, main = "Difference Between Experimental and Theoretical Value", 
+          xlab = "Difference", breaks = 10)
 
 tTest <- t.test(vaporData$experimental, vaporData$theoretical, paired = TRUE, conf.level = 0.95)
 
